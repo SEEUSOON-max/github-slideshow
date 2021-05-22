@@ -1,0 +1,32 @@
+Architecture :
+
+RCNN :
+a method where we use selective search to extract just 2000 regions from the image 
+
+Faster RCNN : 
+
+- Similar to Fast R-CNN, the image is provided as an input to a convolutional network which provides a convolutional feature map. 
+- Instead of using selective search algorithm on the feature map to identify the region proposals,
+   a separate network is used to predict the region proposals.
+-  The predicted region proposals are then reshaped using a RoI poolinglayer which is then used to classify the
+   image within the proposed region and predict the offset values for the bounding boxes.
+
+---------Mask RCNN :
+
+Mask R-CNN is basically an extension of Faster R-CNN. Faster R-CNN is widely used for object detection tasks. For a given image, 
+it returns the class label and bounding box coordinates for each object in the image.
+
+1.  we use the ResNet 101 architecture to extract features from the images in Mask R-CNN. 
+    So, the first step is to take an image and extract features using the ResNet 101 architecture.
+
+2. Region Proposal Network (RPN) - Now, we take the feature maps obtained in the previous step and apply a region proposal network (RPM). 
+   This basically predicts if an object is present in that region (or not).
+
+3. Region of Interest (RoI) - The regions obtained from the RPN might be of different shapes, right? Hence, we apply a pooling layer and 
+   convert all the regions to the same shape. Next, these regions are passed through a fully connected network so that the class label 
+   and bounding boxes are predicted
+
+	Till this point, the steps are almost similar to how Faster R-CNN works. Now comes the difference between the two frameworks. 
+	In addition to this, Mask R-CNN also generates the segmentation mask.
+	we can use either use semantic segmentation[group segmentation] and instance segmentation[it classifies the objects]
+ 
